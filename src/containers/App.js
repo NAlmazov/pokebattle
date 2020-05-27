@@ -1,7 +1,6 @@
 import React, { Component }  from 'react';
 import './App.css';
 import PokemonTeam from '../components/PokemonTeam';
-import { pokemonlistold } from '../components/Pokemonlist';
 
 
 const getRandomIds = () => {
@@ -26,40 +25,42 @@ const createPokeURLs = (array) => {
   return arrayURL;
 }
 
-const createPokeArray = (array) => {
-  const pokeArray =[];
-  for (var i=0; i<array.length; i++) {
-    fetch(array[i])
-      .then(response => response.json())
-      .then(response => pokeArray.push(response))
-  }
-  return pokeArray;
-}
-
 class App extends Component {
 
   constructor() {
     super()
     this.state = {
-      pokemonlist: []
+      pokemonlistPlayer: [],
+      pokemonlistEnemy: []
     }
   }
 
   componentDidMount() {
-    const pokeIds = getRandomIds();
-    const pokeURLs = createPokeURLs(pokeIds);
-    const pokeListArray = createPokeArray(pokeURLs);
-    this.setState({ pokemonlist: pokemonlistold});
-    console.log(pokeListArray);
+    const pokeIdsPlayer = getRandomIds();
+    const pokeURLsPlayer = createPokeURLs(pokeIdsPlayer);
+
+    Promise.all(pokeURLsPlayer.map(url => fetch(url)))
+    .then(resp=> Promise.all ( resp.map(r => r.json()) ))
+    .then (result => {
+      return this.setState({ pokemonlistPlayer: result });
+    });
+
+    const pokeIdsEnemy = getRandomIds();
+    const pokeURLsenemy = createPokeURLs(pokeIdsEnemy);
+
+    Promise.all(pokeURLsenemy.map(url => fetch(url)))
+    .then(resp=> Promise.all ( resp.map(r => r.json()) ))
+    .then (result => {
+      return this.setState({ pokemonlistEnemy: result });
+    });
   }
 
   render() {
-
-    const pokemonListInit = this.state.pokemonlist;
-    if (pokemonListInit === 0) {
-      return <h1>Loading</h1>
+    const pokemonListInitPlayer = this.state.pokemonlistPlayer;
+    const pokemonListInitEnemy = this.state.pokemonlistEnemy;
+    if (pokemonListInitPlayer === 0 && pokemonListInitEnemy === 0 ) {
+      return <h4>Loading</h4>
     } else {
-      console.log(pokemonListInit);
       return(
       <div className="App">
         <header className="App-header">
@@ -67,9 +68,9 @@ class App extends Component {
         </header>
         <div>
             <h2>Your Team</h2>
-            <PokemonTeam pokemonlist={pokemonListInit} />
+            <PokemonTeam pokemonlist={pokemonListInitPlayer} />
             <h2>Red's Team</h2>
-            <PokemonTeam pokemonlist={pokemonListInit} />
+            <PokemonTeam pokemonlist={pokemonListInitEnemy} />
         </div>
       </div>
     )
