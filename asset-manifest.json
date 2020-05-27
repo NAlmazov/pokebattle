@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.091ae54a.chunk.css",
-    "main.js": "/static/js/main.3f060c3d.chunk.js",
-    "main.js.map": "/static/js/main.3f060c3d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.6ee9e1a1.js",
-    "runtime-main.js.map": "/static/js/runtime-main.6ee9e1a1.js.map",
-    "static/css/2.3c03f26f.chunk.css": "/static/css/2.3c03f26f.chunk.css",
-    "static/js/2.b84b0423.chunk.js": "/static/js/2.b84b0423.chunk.js",
-    "static/js/2.b84b0423.chunk.js.map": "/static/js/2.b84b0423.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.7a1b1bfb3a55027ad2e65beca7c7bd75.js": "/precache-manifest.7a1b1bfb3a55027ad2e65beca7c7bd75.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.3c03f26f.chunk.css.map": "/static/css/2.3c03f26f.chunk.css.map",
-    "static/css/main.091ae54a.chunk.css.map": "/static/css/main.091ae54a.chunk.css.map",
-    "static/js/2.b84b0423.chunk.js.LICENSE.txt": "/static/js/2.b84b0423.chunk.js.LICENSE.txt"
+    "main.css": "/pokebattle/static/css/main.091ae54a.chunk.css",
+    "main.js": "/pokebattle/static/js/main.1c061473.chunk.js",
+    "main.js.map": "/pokebattle/static/js/main.1c061473.chunk.js.map",
+    "runtime-main.js": "/pokebattle/static/js/runtime-main.7dbc0e81.js",
+    "runtime-main.js.map": "/pokebattle/static/js/runtime-main.7dbc0e81.js.map",
+    "static/css/2.3c03f26f.chunk.css": "/pokebattle/static/css/2.3c03f26f.chunk.css",
+    "static/js/2.b84b0423.chunk.js": "/pokebattle/static/js/2.b84b0423.chunk.js",
+    "static/js/2.b84b0423.chunk.js.map": "/pokebattle/static/js/2.b84b0423.chunk.js.map",
+    "index.html": "/pokebattle/index.html",
+    "precache-manifest.b24cb3cb5b6f87a4ac2b694f3696cb82.js": "/pokebattle/precache-manifest.b24cb3cb5b6f87a4ac2b694f3696cb82.js",
+    "service-worker.js": "/pokebattle/service-worker.js",
+    "static/css/2.3c03f26f.chunk.css.map": "/pokebattle/static/css/2.3c03f26f.chunk.css.map",
+    "static/css/main.091ae54a.chunk.css.map": "/pokebattle/static/css/main.091ae54a.chunk.css.map",
+    "static/js/2.b84b0423.chunk.js.LICENSE.txt": "/pokebattle/static/js/2.b84b0423.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.6ee9e1a1.js",
+    "static/js/runtime-main.7dbc0e81.js",
     "static/css/2.3c03f26f.chunk.css",
     "static/js/2.b84b0423.chunk.js",
     "static/css/main.091ae54a.chunk.css",
-    "static/js/main.3f060c3d.chunk.js"
+    "static/js/main.1c061473.chunk.js"
   ]
 }
