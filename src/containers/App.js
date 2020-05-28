@@ -51,7 +51,8 @@ class App extends Component {
       pokemonlistEnemy: [],
       totalPlayerPower: 0,
       totalEnemyPower: 0,
-      score: 0
+      score: 0,
+      gameStatus: `Click Battle To Fight!`
     }
   }
 
@@ -109,6 +110,18 @@ class App extends Component {
     .then (result => {
       return this.setState({ pokemonlistPlayer: result });
     });
+    //Get Player Power
+    const totalPlayerSpeed = getStat(`speed`, this.state.pokemonlistPlayer);
+    const totalPlayerSpecDef = getStat(`special-defense`, this.state.pokemonlistPlayer);
+    const totalPlayerSpecAttack = getStat(`special-attack`, this.state.pokemonlistPlayer);
+    const totalPlayerDefense = getStat(`defense`, this.state.pokemonlistPlayer);
+    const totalPlayerAttack = getStat(`attack`, this.state.pokemonlistPlayer);
+    const totalPlayerHp = getStat(`hp`, this.state.pokemonlistPlayer);
+
+    const totalPlayerPower = (totalPlayerSpeed + totalPlayerSpecDef + totalPlayerSpecAttack + totalPlayerDefense + totalPlayerAttack + totalPlayerHp);
+    this.setState( {totalPlayerPower: totalPlayerPower})
+    this.setState({ score: 0})
+    this.setState( {gameStatus: `Use Your New Pokemon To Fight!`})
   }
 
   onBattleButtonClick = () => {
@@ -134,6 +147,8 @@ class App extends Component {
    
        const totalEnemyPower = (totalEnemySpeed + totalEnemySpecDef + totalEnemySpecAttack + totalEnemyDefense + totalEnemyAttack + totalEnemyHp);
        this.setState( {totalEnemyPower: totalEnemyPower})
+
+       this.setState( {gameStatus: `YOU WON. Click Battle To Fight Again!`})
 
     } 
     // Loss Condition
@@ -177,6 +192,9 @@ class App extends Component {
 
       const totalEnemyPower = (totalEnemySpeed + totalEnemySpecDef + totalEnemySpecAttack + totalEnemyDefense + totalEnemyAttack + totalEnemyHp);
       this.setState( {totalEnemyPower: totalEnemyPower})
+
+      //Update Message
+      this.setState( {gameStatus: `YOU LOST. Click Battle for Revenge!`})
     }
   }
 
@@ -191,7 +209,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
             <h1>Pokebattle v1.0</h1>
-            <button onClick={ this.onRefreshButtonClick } className='push'>Get New Pokemons</button>
+            <h1 className='push'>{this.state.gameStatus}</h1>
+            <button onClick={ this.onRefreshButtonClick } className='pushsmall'>Get New Pokemons</button>
             <button onClick={ this.onBattleButtonClick } className='pushsmall'>Battle</button>
             <h2 className='pushsmall score'>Current Score: {currentScore}</h2>
         </header>
