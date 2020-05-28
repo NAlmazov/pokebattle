@@ -1,5 +1,9 @@
+body{
+  background-color: #f986ff;
+}
+
 .App {
-  text-align: center;
+  text-align: start;
   background-color: #f986ff;
   min-height: 100vh;
 }
@@ -7,13 +11,51 @@
 
 .App-header {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
   color: white;
+  background-color: #ffc086;
+  top: 0;
+  width: 100%;
+  font-size: 0.7em;
+  margin: 0;
+  position: sticky;
 }
 
-h2 {
+.push {
+  margin-left: auto;
+}
+.pushsmall {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.score{
+  color: black;
+  animation: blinkingText 1.2s infinite;
+}
+@keyframes blinkingText{
+	0%{		color: #000;	}
+	49%{	color: transparent;	}
+	50%{	color: transparent;	}
+	99%{	color:#000;	}
+	100%{	color: #000;	}
+}
+
+button{
+  cursor:pointer;
+  padding: 10px;
+  width: 200px;
+  border: none;
+  color: red;
+  background-color: white;
+  border-radius: 12px;
+}
+
+button:hover{
   color: white;
+  background-color: red;
+}
+
+.game {
+  color: white;
+  text-align: center;
 }
