@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7c9bdbfd8ed6adb22c1fef15bcbd4832",
+    "revision": "b9f4f1ab9f5cfdf1ac16aaa2103a30aa",
     "url": "/pokebattle/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pokebattle/static/css/2.3c03f26f.chunk.css"
   },
   {
-    "revision": "b9979a3bb1f1f8e1128e",
+    "revision": "c9fdcf2ebe20b90d862f",
     "url": "/pokebattle/static/css/main.a97e88ba.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pokebattle/static/js/2.1da83eb2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b9979a3bb1f1f8e1128e",
-    "url": "/pokebattle/static/js/main.b4bab51c.chunk.js"
+    "revision": "c9fdcf2ebe20b90d862f",
+    "url": "/pokebattle/static/js/main.70cfbf5d.chunk.js"
   },
   {
     "revision": "cf92450cdfa1e86d64ee",
