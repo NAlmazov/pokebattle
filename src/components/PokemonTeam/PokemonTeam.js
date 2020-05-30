@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Pokemon from './Pokemon';
+import Pokemon from '../Pokemon/Pokemon';
 
 const PokemonTeam = ({ pokemonlist }) => {
 
