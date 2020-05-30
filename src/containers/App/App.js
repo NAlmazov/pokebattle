@@ -81,7 +81,8 @@ class App extends Component {
             this.setState( {gameStatus: `You WON! Pick a Pokémon to steal`});
             let pokeSteal = window.prompt(`Type Pokemon ID to steal!`);
             pokeSteal = Number(pokeSteal);
-            let pokeDiscard = Number ( window.prompt(`Type Pokemon ID to discard!`) );
+            let pokeDiscard = window.prompt(`Type Pokemon ID to discard!`);
+            pokeDiscard = Number (pokeDiscard);
            if (pokeSteal && pokeDiscard){
             PlayerTeam = stealPoke(PlayerTeam, pokeDiscard, EnemyTeam, pokeSteal);
 
