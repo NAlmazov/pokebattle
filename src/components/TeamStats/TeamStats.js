@@ -1,22 +1,8 @@
 import React from 'react';
 import './TeamStats.css';
+import { getStat } from '../../containers/App/getStat.js';
 
 const TeamStats = ({ pokemonlist }) => {
-    
-    const getStat = (stat, array) => {
-        let statistic = 0;
-            array.forEach((pokemon, i) => {
-                let statArray = pokemonlist[i].stats;
-                statArray.forEach((statfield, i) => {
-                    if (statArray[i].stat.name === stat) {
-                        statistic = statistic + statArray[i].base_stat;
-                    }
-                }
-                )
-             }
-            )
-        return statistic;
-    }
     
     const totalSpeed = getStat(`speed`, pokemonlist);
     const totalSpecDef = getStat(`special-defense`, pokemonlist);
