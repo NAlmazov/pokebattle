@@ -1,25 +1,41 @@
 import React, { Component }  from 'react';
 import './App.css';
+import { connect } from 'react-redux'
+import { requestPokemonPlayer, requestPokemonEnemy, currentScore, winRound, stealPokemon } from '../../actions'
 import PokemonTeam from '../../components/PokemonTeam/PokemonTeam';
 import TeamStats from '../../components/TeamStats/TeamStats';
-import { getRandomIds } from './getRandomPokeIds';
-import { createPokeURLs } from './getPokeURLs';
 import { getPower } from './getPower';
-import { stealPoke } from './stealPoke';
 
 let playerPower = 0;
 let enemyPower = 0;
-let EnemyTeam = [];
-let PlayerTeam = [];
+
+const mapStateToProps = state => {
+  return{
+    PlayerTeam: state.requestPokemonPlayer.pokemonlistPlayer,
+    isPendingPlayer: state.requestPokemonPlayer.isPending,
+    EnemyTeam: state.requestPokemonEnemy.pokemonlistEnemy,
+    isPendingEnemy: state.requestPokemonEnemy.isPending,
+    errorPlayer: state.requestPokemonPlayer.error,
+    errorEnemy: state.requestPokemonEnemy.error,
+    score: state.currentScore.score
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onRequestPokemonPlayer: () => dispatch(requestPokemonPlayer()),
+    onRequestPokemonEnemy: () => dispatch(requestPokemonEnemy()),
+    onCurrentScore: () => dispatch(currentScore()),
+    onWinRound: (score) => dispatch(winRound(score)),
+    onStealPokemon: (arrayPlayer, changeNumPlayer, arrayEnemy, changeNumEnemy) => dispatch(stealPokemon(arrayPlayer, changeNumPlayer, arrayEnemy, changeNumEnemy))
+  }
+}
 
 class App extends Component {
 
   constructor() {
     super()
     this.state = {
-      pokemonlistPlayer: [],
-      pokemonlistEnemy: [],
-      score: 0,
       gameStatus: `Click Battle To Fight!`,
       turnStatus: `battle`
     }
@@ -27,54 +43,32 @@ class App extends Component {
 
 
   componentDidMount() {
-    //Get Player Pokemon Team
-    const pokeIdsPlayer = getRandomIds(6);
-    const pokeURLsPlayer = createPokeURLs(pokeIdsPlayer);
-   
-    Promise.all(pokeURLsPlayer.map(url => fetch(url)))
-    .then(resp=> Promise.all ( resp.map(r => r.json()) ))
-    .then(result => {
-      return this.setState({ pokemonlistPlayer: result });
-    });
-
+    //Get Player Pokemon Team    
+    this.props.onRequestPokemonPlayer();
+    
     //Get Enemy Pokemon Team
-    const pokeIdsEnemy = getRandomIds(6);
-    const pokeURLsenemy = createPokeURLs(pokeIdsEnemy);
-    Promise.all(pokeURLsenemy.map(url => fetch(url)))
-    .then(resp=> Promise.all ( resp.map(r => r.json()) ))
-    .then (result => {
-      return this.setState({ pokemonlistEnemy: result });
-    });
+    this.props.onRequestPokemonEnemy();
+    //Reset Score
+    this.props.onCurrentScore();
   }
 
   onRefreshButtonClick = () => {
-    const pokeIdsPlayer = getRandomIds(6);
-    const pokeURLsPlayer = createPokeURLs(pokeIdsPlayer);
-
-    Promise.all(pokeURLsPlayer.map(url => fetch(url)))
-    .then(resp=> Promise.all ( resp.map(r => r.json()) ))
-    .then (result => {
-      return this.setState({ pokemonlistPlayer: result });
-    });
-
-    this.setState({ score: 0})
-
+    //Refresh Player Pokemon Team  
+    this.props.onRequestPokemonPlayer();
+    //Reset The Score
+    this.props.onCurrentScore();
+    //Reset Game Status
     this.setState( {gameStatus: `Use Your New Pokemon To Fight!`})
   }
 
   onBattleButtonClick = () => {
-    PlayerTeam = this.state.pokemonlistPlayer;
-    playerPower = getPower(this.state.pokemonlistPlayer);
+    const { PlayerTeam, EnemyTeam, score }  = this.props;
+
+    playerPower = getPower(PlayerTeam);
   
-
-    EnemyTeam = this.state.pokemonlistEnemy;
-    enemyPower = getPower(this.state.pokemonlistEnemy);
-
-    let score = this.state.score;
+    enemyPower = getPower(EnemyTeam);
     // Win Condition
     if (playerPower >= enemyPower){
-        // Give Win Point
-        this.setState({score: (Number(score)+1)})
        //lets player steal a pokemon
        if (this.state.turnStatus === `battle`) {
             this.setState ({ turnStatus: `configteam`});
@@ -84,9 +78,9 @@ class App extends Component {
             let pokeDiscard = window.prompt(`Type Pokemon ID to discard!`);
             pokeDiscard = Number (pokeDiscard);
            if (pokeSteal && pokeDiscard){
-            PlayerTeam = stealPoke(PlayerTeam, pokeDiscard, EnemyTeam, pokeSteal);
-
-            this.setState( {pokemonlistPlayer: PlayerTeam});
+             //Steal Pokemon
+              this.props.onStealPokemon(PlayerTeam, pokeDiscard, EnemyTeam, pokeSteal);
+              
             this.setState ({ turnStatus: `battle`});
             this.setState( {gameStatus: `Click Battle to Fight Again!`});
            } else {
@@ -94,45 +88,30 @@ class App extends Component {
             this.setState( {gameStatus: `Click Battle to Fight Again!`});
            }
             
-       } else {
-        this.setState( {gameStatus: `Pick a Pokémon to steal`})
-       }
-
+       } 
+      //  else {
+      //   this.props.onCurrentScore();
+      //   this.setState( {gameStatus: `Pick a Pokémon to steal`})
+      //  }
+       this.props.onWinRound(score+1);
     } 
     // Loss Condition
     else {
-      this.setState({score: 0})
-      const pokeIdsPlayer = getRandomIds(this.state.pokemonlistPlayer.length);
-      const pokeURLsPlayer = createPokeURLs(pokeIdsPlayer);
-
-      Promise.all(pokeURLsPlayer.map(url => fetch(url)))
-        .then(resp=> Promise.all ( resp.map(r => r.json()) ))
-        .then (result => {
-        return this.setState({ pokemonlistPlayer: result });
-        });
-      
+      this.props.onRequestPokemonPlayer();
+      this.props.onCurrentScore();
       //Update Message
       this.setState( {gameStatus: `YOU LOST. Click Battle for Revenge!`})
     }
 
     // refresh enemy team
-    const pokeIdsEnemy = getRandomIds(this.state.pokemonlistEnemy.length);
-    const pokeURLsEnemy = createPokeURLs(pokeIdsEnemy);
-
-    Promise.all(pokeURLsEnemy.map(url => fetch(url)))
-      .then(resp=> Promise.all ( resp.map(r => r.json()) ))
-      .then (result => {
-      return this.setState({ pokemonlistEnemy: result });
-     });
+    this.props.onRequestPokemonEnemy();
 
   }
 
 
   render() {
-    const pokemonListInitPlayer = this.state.pokemonlistPlayer;
-    const currentScore = this.state.score;
-    const pokemonListInitEnemy = this.state.pokemonlistEnemy;
-    if (pokemonListInitPlayer === 0 && pokemonListInitEnemy === 0 ) {
+    const { PlayerTeam, isPendingPlayer, EnemyTeam, isPendingEnemy, score }  = this.props;
+    if (isPendingPlayer && isPendingEnemy ) {
       return <h4>Loading</h4>
     } else {
       return(
@@ -142,15 +121,15 @@ class App extends Component {
             <h1 className='push'>{this.state.gameStatus}</h1>
             <button onClick={ this.onRefreshButtonClick } className='pushsmall'>Get New Pokémon</button>
             <button onClick={ this.onBattleButtonClick } className='pushsmall'>Battle</button>
-            <h2 className='pushsmall score'>Current Score: {currentScore}</h2>
+            <h2 className='pushsmall score'>Current Score: {score}</h2>
         </header>
         <div className="game">
             <h2>Your Team</h2>
-            <PokemonTeam pokemonlist={pokemonListInitPlayer} />
-            <TeamStats pokemonlist={pokemonListInitPlayer}/>
+            <PokemonTeam pokemonlist={PlayerTeam} />
+            <TeamStats pokemonlist={PlayerTeam}/>
             <h2>Red's Team</h2>
-            <PokemonTeam pokemonlist={pokemonListInitEnemy} />
-            <TeamStats pokemonlist={pokemonListInitEnemy}/>
+            <PokemonTeam pokemonlist={EnemyTeam} />
+            <TeamStats pokemonlist={EnemyTeam}/>
         </div>
       </div>
     )
@@ -159,4 +138,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
