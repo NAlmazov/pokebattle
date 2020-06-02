@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pokebattle/static/css/main.a97e88ba.chunk.css",
-    "main.js": "/pokebattle/static/js/main.602b68a9.chunk.js",
-    "main.js.map": "/pokebattle/static/js/main.602b68a9.chunk.js.map",
+    "main.js": "/pokebattle/static/js/main.35027ce0.chunk.js",
+    "main.js.map": "/pokebattle/static/js/main.35027ce0.chunk.js.map",
     "runtime-main.js": "/pokebattle/static/js/runtime-main.7dbc0e81.js",
     "runtime-main.js.map": "/pokebattle/static/js/runtime-main.7dbc0e81.js.map",
     "static/css/2.3c03f26f.chunk.css": "/pokebattle/static/css/2.3c03f26f.chunk.css",
     "static/js/2.1e9362e4.chunk.js": "/pokebattle/static/js/2.1e9362e4.chunk.js",
     "static/js/2.1e9362e4.chunk.js.map": "/pokebattle/static/js/2.1e9362e4.chunk.js.map",
     "index.html": "/pokebattle/index.html",
-    "precache-manifest.d4ae4c7ae1677f6cceb2f2ec1b663b5d.js": "/pokebattle/precache-manifest.d4ae4c7ae1677f6cceb2f2ec1b663b5d.js",
+    "precache-manifest.6c4c5dd8d668c0489b1b0be3df24ad2f.js": "/pokebattle/precache-manifest.6c4c5dd8d668c0489b1b0be3df24ad2f.js",
     "service-worker.js": "/pokebattle/service-worker.js",
     "static/css/2.3c03f26f.chunk.css.map": "/pokebattle/static/css/2.3c03f26f.chunk.css.map",
     "static/css/main.a97e88ba.chunk.css.map": "/pokebattle/static/css/main.a97e88ba.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.3c03f26f.chunk.css",
     "static/js/2.1e9362e4.chunk.js",
     "static/css/main.a97e88ba.chunk.css",
-    "static/js/main.602b68a9.chunk.js"
+    "static/js/main.35027ce0.chunk.js"
   ]
 }
