@@ -7,7 +7,12 @@ import {
     REQUEST_ENEMY_POKE_FAILED,
     SCORE_ZERO,
     WIN_ROUND,
-    POKE_STEAL
+    POKE_STEAL,
+    TURN_DATA_MAINMENU,
+    TURN_DATA_GAMESTART,
+    TURN_DATA_WIN,
+    TURN_DATA_STEAL,
+    TURN_DATA_LOSS
 
 } from './constants'
 
@@ -52,6 +57,42 @@ export const stealPokemon = (arrayPlayer, changeNumPlayer, arrayEnemy, changeNum
         type: POKE_STEAL,
         payload: stealPoke(arrayPlayer, changeNumPlayer, arrayEnemy, changeNumEnemy)
 
+})
+
+export const startGame = () => ({
+    type: TURN_DATA_GAMESTART,
+    payload: {
+        screen: 'game',
+        mainprompt: 'Click Battle To Fight!',
+        turn: 'battleready'
+    }
+})
+
+export const roundWin = () => ({
+    type: TURN_DATA_WIN,
+    payload: {
+        screen: 'game',
+        mainprompt: 'You Won! Pick a Pokémon to steal',
+        turn: 'cansteal'
+    }
+})
+
+export const pokeStolen = () => ({
+    type: TURN_DATA_STEAL,
+    payload: {
+        screen: 'game',
+        mainprompt: 'Nice Pokemon! Use it in Battle!',
+        turn: 'battleready'
+    }
+})
+
+export const roundLoss = () => ({
+    type: TURN_DATA_LOSS,
+    payload: {
+        screen: 'game',
+        mainprompt: 'You Lost. Click Battle for Revenge!',
+        turn: 'battleready'
+    }
 })
 
 

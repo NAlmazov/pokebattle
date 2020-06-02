@@ -7,11 +7,11 @@ import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './containers/App/App';
 import * as serviceWorker from './serviceWorker';
-import { requestPokemonPlayer, requestPokemonEnemy, currentScore } from './reducers';
+import { requestPokemonPlayer, requestPokemonEnemy, currentScore, currentTurn } from './reducers';
 import 'tachyons';
 
 const logger = createLogger();
-const rootReducer = combineReducers( {requestPokemonPlayer, requestPokemonEnemy, currentScore} );
+const rootReducer = combineReducers( {requestPokemonPlayer, requestPokemonEnemy, currentScore, currentTurn} );
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render(

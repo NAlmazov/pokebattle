@@ -12,7 +12,14 @@ export const REQUEST_ENEMY_POKE_FAILED = 'REQUEST_ENEMY_POKE_FAILED';
 export const SCORE_ZERO = 'SCORE_ZERO';
 
 //Round Win
-export const WIN_ROUND = 'WIN_ROUND'
+export const WIN_ROUND = 'WIN_ROUND';
 
 //Poke Steal
-export const POKE_STEAL = 'POKE_STEAL'
+export const POKE_STEAL = 'POKE_STEAL';
+
+//Turn
+export const TURN_DATA_MAINMENU = 'TURN_DATA_MAINMENU';
+export const TURN_DATA_GAMESTART = 'TURN_DATA_GAMESTART';
+export const TURN_DATA_WIN = 'TURN_DATA_WIN';
+export const TURN_DATA_STEAL = 'TURN_DATA_STEAL';
+export const TURN_DATA_LOSS = 'TURN_DATA_LOSS';
