@@ -3,14 +3,28 @@
   top: 30%;
   left: 40%;
   margin-top: -50px;
-  margin-left: -100px;
+  margin-left: -140px;
 }
 
 #option {
-    margin-top: 20px;
+    margin-top: 10%;
     font-size: 4rem;
 }
 
 #optionbutton {
-    width: 30vw;
+    width: 40vw;
+}
+
+#pokeheader {
+  width: 30vw;
+  height: 30vh;
+  margin-left: 35%;
+}
+
+#poketeam {
+  width: 50vw;
+  height: 50vh;
+  margin-top: 15%;
+  margin-left: 25%;
+  position: fixed;
 }

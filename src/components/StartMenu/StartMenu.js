@@ -30,6 +30,9 @@ class StartMenu extends Component {
                 <header className="App-header">
                     <h1>Pokébattle v1.0</h1>
                  </header>
+                 <div id="pokeheader">
+                        <img alt='pokemonheader' src={require(`./assets/pokeheader.png`)} />
+                 </div>
                 <div id='options'>
                     <div id='option'>
                         <button id='optionbutton' onClick={ this.onStartGameClick }>Play Pokébattle</button>
@@ -38,6 +41,9 @@ class StartMenu extends Component {
                         <button id='optionbutton'>Instructions</button> 
                     </div>
                 </div>   
+                <div id="poketeam">
+                    <img alt='pokemonteam' src={require(`./assets/poketeam.png`)} />
+                </div>
             </Fragment>
                 )
     }
