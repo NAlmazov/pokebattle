@@ -1,7 +1,10 @@
 #stat {
     background: white;
     width: 30vw;
+    height: auto;
     color: black;
+    border-style: solid;
+    border-color: black;
 }
 
 #headerstats {

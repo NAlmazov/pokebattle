@@ -59,6 +59,15 @@ export const stealPokemon = (arrayPlayer, changeNumPlayer, arrayEnemy, changeNum
 
 })
 
+export const launchMenu = () => ({
+    type: TURN_DATA_MAINMENU,
+    payload: {
+        screen: 'mainmenu',
+        mainprompt: '',
+        turn: ''
+    }
+})
+
 export const startGame = () => ({
     type: TURN_DATA_GAMESTART,
     payload: {

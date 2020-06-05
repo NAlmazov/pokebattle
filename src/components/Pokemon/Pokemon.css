@@ -1,9 +1,9 @@
 #card {
-    background: #ffc086;
     max-width: 290px;
     width: 10vw;
     color: white;
     font-size: 12px;
+    background-color: lightcoral;
 }
 
 img {

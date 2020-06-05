@@ -1,0 +1,16 @@
+#options {
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+#option {
+    margin-top: 20px;
+    font-size: 4rem;
+}
+
+#optionbutton {
+    width: 30vw;
+}

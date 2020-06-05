@@ -1,9 +1,10 @@
 import React, { Component }  from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import { requestPokemonPlayer, requestPokemonEnemy, currentScore, winRound, stealPokemon, startGame, roundWin, pokeStolen, roundLoss } from '../../actions'
+import { requestPokemonPlayer, requestPokemonEnemy, currentScore, winRound, stealPokemon, startGame, roundWin, pokeStolen, roundLoss, launchMenu } from '../../actions'
 import PokemonTeam from '../../components/PokemonTeam/PokemonTeam';
 import TeamStats from '../../components/TeamStats/TeamStats';
+import StartMenu from '../../components/StartMenu/StartMenu';
 
 const mapStateToProps = state => {
   return{
@@ -33,7 +34,8 @@ const mapDispatchToProps = (dispatch) => {
     onStartGame: () => dispatch(startGame()),
     onRoundWin: () => dispatch(roundWin()),
     onPokeStolen: () => dispatch(pokeStolen()),
-    onRoundLoss: () => dispatch(roundLoss())
+    onRoundLoss: () => dispatch(roundLoss()),
+    onLaunchMenu: () => dispatch(launchMenu())
   }
 }
 
@@ -41,7 +43,7 @@ class App extends Component {
 
   componentDidMount() {
     //StartGame
-    this.props.onStartGame();
+    this.props.onLaunchMenu();
     //Get Player Pokemon Team    
     this.props.onRequestPokemonPlayer();
     
@@ -49,6 +51,16 @@ class App extends Component {
     this.props.onRequestPokemonEnemy();
     //Reset Score
     this.props.onCurrentScore();
+  }
+
+  onMainMenuButtonClick = () => {
+  
+    this.props.onRequestPokemonPlayer();
+    this.props.onCurrentScore();
+    this.props.onRoundLoss();
+    this.props.onRequestPokemonEnemy();
+    this.props.onLaunchMenu();
+
   }
 
   onRefreshButtonClick = () => {
@@ -90,32 +102,36 @@ class App extends Component {
 
 
   render() {
-    const { PlayerTeam, isPendingPlayer, EnemyTeam, isPendingEnemy, score, mainprompt }  = this.props;
+    const { PlayerTeam, isPendingPlayer, EnemyTeam, isPendingEnemy, score, mainprompt, screen }  = this.props;
     if (isPendingPlayer && isPendingEnemy ) {
       return <h4>Loading</h4>
     } else {
-      return(
-      <div className="App">
-        <header className="App-header">
-            <h1>Pokébattle v1.0</h1>
-            <h1 className='push'>{mainprompt}</h1>
-            <button onClick={ this.onRefreshButtonClick } className='pushsmall'>Get New Pokémon</button>
-            <button onClick={ this.onBattleButtonClick } className='pushsmall'>Battle</button>
-            <h2 className='pushsmall score'>Current Score: {score}</h2>
-        </header>
-        <div className="game">
-            <h2>Your Team</h2>
-            <PokemonTeam pokemonlist={PlayerTeam} />
-            <TeamStats pokemonlist={PlayerTeam}/>
-            <h2>Red's Team</h2>
-            <PokemonTeam pokemonlist={EnemyTeam} />
-            <TeamStats pokemonlist={EnemyTeam}/>
+      if (screen === 'mainmenu') {
+        return <StartMenu />
+      } else{
+        return(
+          <div className="App">
+          <header className="App-header">
+              <h1>Pokébattle v1.0</h1>
+              <h1 className='push'>{mainprompt}</h1>
+              <button id='controlbuttons' onClick={ this.onRefreshButtonClick } className='pushsmall'>Get New Pokémon</button>
+              <button id='controlbuttons' onClick={ this.onBattleButtonClick } className='pushsmall'>Battle</button>
+              <button id='controlbuttons' onClick={ this.onMainMenuButtonClick } className='pushsmall'>Main Menu</button>
+              <h2 className='pushsmall score'>Current Score: {score}</h2>
+          </header>
+          <div className="game">
+              <h2>Your Team</h2>
+              <PokemonTeam id='Player' pokemonlist={PlayerTeam} />
+              <TeamStats pokemonlist={PlayerTeam}/>
+              <h2>Red's Team</h2>
+              <PokemonTeam id='Enemy' pokemonlist={EnemyTeam} />
+              <TeamStats pokemonlist={EnemyTeam}/>
+          </div>
         </div>
-      </div>
-    )
+          );
+        }
+      }  
     }
-    
   }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
