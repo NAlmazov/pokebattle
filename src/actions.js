@@ -26,10 +26,15 @@ export const requestPokemonPlayer = () => (dispatch) => {
     const pokeIdsPlayer = getRandomIds(6);
     const pokeURLsPlayer = createPokeURLs(pokeIdsPlayer);
 
-    Promise.all(pokeURLsPlayer.map(url => fetch(url)))
+    setTimeout(() => {
+
+        Promise.all(pokeURLsPlayer.map(url => fetch(url)))
         .then(resp=> Promise.all ( resp.map(r => r.json()) ))
         .then(data => dispatch({ type: REQUEST_PLAYER_POKE_SUCCESS, payload: data}))
         .catch(error => dispatch({ type: REQUEST_PLAYER_POKE_FAILED, payload: error }))
+
+    }, 3000)
+
 }
 
 export const requestPokemonEnemy = () => (dispatch) => {
@@ -37,10 +42,14 @@ export const requestPokemonEnemy = () => (dispatch) => {
     const pokeIdsEnemy = getRandomIds(6);
     const pokeURLsPlayer = createPokeURLs(pokeIdsEnemy);
 
-    Promise.all(pokeURLsPlayer.map(url => fetch(url)))
+    setTimeout(() => {
+
+        Promise.all(pokeURLsPlayer.map(url => fetch(url)))
         .then(resp=> Promise.all ( resp.map(r => r.json()) ))
         .then(data => dispatch({ type: REQUEST_ENEMY_POKE_SUCCESS, payload: data}))
         .catch(error => dispatch({ type: REQUEST_ENEMY_POKE_FAILED, payload: error }))
+
+    }, 3000)
 }
 
 export const currentScore = () => ({

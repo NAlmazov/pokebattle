@@ -69,7 +69,7 @@ class App extends Component {
     //Reset The Score
     this.props.onCurrentScore();
     //Reset Game Status
-    this.props.onRoundLoss();
+    this.props.onStartGame();
   }
 
   onBattleButtonClick = () => {
@@ -103,9 +103,9 @@ class App extends Component {
 
   render() {
     const { PlayerTeam, isPendingPlayer, EnemyTeam, isPendingEnemy, score, mainprompt, screen }  = this.props;
-    if (isPendingPlayer && isPendingEnemy ) {
-      return <h4>Loading</h4>
-    } else {
+    // if (isPendingPlayer && isPendingEnemy ) {
+    //   return <h4>Loading</h4>
+    // } else {
       if (screen === 'mainmenu') {
         return <StartMenu />
       } else{
@@ -121,17 +121,20 @@ class App extends Component {
           </header>
           <div className="game">
               <h2>Your Team</h2>
-              <PokemonTeam id='Player' pokemonlist={PlayerTeam} />
-              <TeamStats pokemonlist={PlayerTeam}/>
+              <div className="gamerow">
+                <PokemonTeam id='Player' pokemonlist={PlayerTeam} status={isPendingPlayer} />
+                <TeamStats pokemonlist={PlayerTeam}/>
+              </div>
               <h2>Red's Team</h2>
-              <PokemonTeam id='Enemy' pokemonlist={EnemyTeam} />
-              <TeamStats pokemonlist={EnemyTeam}/>
+              <div className="gamerow">
+                <PokemonTeam id='Enemy' pokemonlist={EnemyTeam} status={isPendingEnemy}/>
+                <TeamStats pokemonlist={EnemyTeam}/>
+              </div>
           </div>
         </div>
           );
         }
       }  
-    }
   }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -6,7 +6,7 @@
 
 .App-header {
   display: flex;
-  color: white;
+  color: rgb(248,249,250);
   background-color: #3B4CCA;
   top: 0;
   width: 100%;
@@ -74,5 +74,12 @@ button:hover{
 }
 
 #Player {
-  background: lightcoral;
+  background: lightseagreen;
+}
+
+.gamerow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }

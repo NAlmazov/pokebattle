@@ -1,26 +1,36 @@
 import React, { Fragment } from 'react';
 import Pokemon from '../Pokemon/Pokemon';
+import PokeballArray from '../PokeballArray/PokeballArray';
 
-const PokemonTeam = ({ pokemonlist }) => {
+const PokemonTeam = ({ pokemonlist, status }) => {
 
-    return(
-        <Fragment>   
-            {
-            pokemonlist.map((pokemon, i) => {
-                return(
-                 <Pokemon 
-                    key={i} 
-                    name={pokemonlist[i].name} 
-                    id={pokemonlist[i].id} 
-                    height={pokemonlist[i].height} 
-                    weight={pokemonlist[i].weight}
-                                                />
-                );
-            }
+
+    if (status){
+        return(
+            <Fragment>
+                <PokeballArray pokemonlist = {pokemonlist}/>
+            </Fragment>
         )
+    } else {
+        return(
+            <Fragment>   
+                {
+                pokemonlist.map((pokemon, i) => {
+                    return(
+                     <Pokemon 
+                        key={i} 
+                        name={pokemonlist[i].name} 
+                        id={pokemonlist[i].id} 
+                        height={pokemonlist[i].height} 
+                        weight={pokemonlist[i].weight}
+                                                    />
+                    );
+                }
+            )
+        }
+    </Fragment>
+        );
     }
-</Fragment>
-    );
    
 }
 export default PokemonTeam;
