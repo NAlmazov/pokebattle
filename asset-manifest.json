@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/pokebattle/static/css/main.c494e4bc.chunk.css",
-    "main.js": "/pokebattle/static/js/main.650915e8.chunk.js",
-    "main.js.map": "/pokebattle/static/js/main.650915e8.chunk.js.map",
+    "main.css": "/pokebattle/static/css/main.46a4d601.chunk.css",
+    "main.js": "/pokebattle/static/js/main.2bc37b48.chunk.js",
+    "main.js.map": "/pokebattle/static/js/main.2bc37b48.chunk.js.map",
     "runtime-main.js": "/pokebattle/static/js/runtime-main.7dbc0e81.js",
     "runtime-main.js.map": "/pokebattle/static/js/runtime-main.7dbc0e81.js.map",
     "static/css/2.3c03f26f.chunk.css": "/pokebattle/static/css/2.3c03f26f.chunk.css",
-    "static/js/2.05f10067.chunk.js": "/pokebattle/static/js/2.05f10067.chunk.js",
-    "static/js/2.05f10067.chunk.js.map": "/pokebattle/static/js/2.05f10067.chunk.js.map",
+    "static/js/2.1351fadc.chunk.js": "/pokebattle/static/js/2.1351fadc.chunk.js",
+    "static/js/2.1351fadc.chunk.js.map": "/pokebattle/static/js/2.1351fadc.chunk.js.map",
     "index.html": "/pokebattle/index.html",
-    "precache-manifest.b44fe75adf5461a5a83895a7d12533ce.js": "/pokebattle/precache-manifest.b44fe75adf5461a5a83895a7d12533ce.js",
+    "precache-manifest.a33c4a5ae04aaa03331c938a71daeeaf.js": "/pokebattle/precache-manifest.a33c4a5ae04aaa03331c938a71daeeaf.js",
     "service-worker.js": "/pokebattle/service-worker.js",
     "static/css/2.3c03f26f.chunk.css.map": "/pokebattle/static/css/2.3c03f26f.chunk.css.map",
-    "static/css/main.c494e4bc.chunk.css.map": "/pokebattle/static/css/main.c494e4bc.chunk.css.map",
-    "static/js/2.05f10067.chunk.js.LICENSE.txt": "/pokebattle/static/js/2.05f10067.chunk.js.LICENSE.txt",
+    "static/css/main.46a4d601.chunk.css.map": "/pokebattle/static/css/main.46a4d601.chunk.css.map",
+    "static/js/2.1351fadc.chunk.js.LICENSE.txt": "/pokebattle/static/js/2.1351fadc.chunk.js.LICENSE.txt",
     "static/media/pokeheader.png": "/pokebattle/static/media/pokeheader.ddd5084d.png",
     "static/media/poketeam.png": "/pokebattle/static/media/poketeam.fc51dabc.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7dbc0e81.js",
     "static/css/2.3c03f26f.chunk.css",
-    "static/js/2.05f10067.chunk.js",
-    "static/css/main.c494e4bc.chunk.css",
-    "static/js/main.650915e8.chunk.js"
+    "static/js/2.1351fadc.chunk.js",
+    "static/css/main.46a4d601.chunk.css",
+    "static/js/main.2bc37b48.chunk.js"
   ]
 }
