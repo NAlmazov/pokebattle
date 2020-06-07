@@ -17,10 +17,7 @@
 
 .push {
   margin-left: auto;
-}
-.pushsmall {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 1rem;
 }
 
 .score{
@@ -33,21 +30,6 @@
 	50%{	color: transparent;	}
 	99%{	color:#fff;	}
 	100%{	color: #fff;	}
-}
-
-button{
-  cursor:pointer;
-  padding: 10px;
-  width: 200px;
-  border: solid;
-  color: white;
-  background-color: #3B4CCA;
-  border-radius: 12px;
-}
-
-button:hover{
-  color: white;
-  background-color: #ca3b4c;
 }
 
 .game {
