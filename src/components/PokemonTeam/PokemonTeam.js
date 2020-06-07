@@ -23,6 +23,7 @@ const PokemonTeam = ({ pokemonlist, status }) => {
                         id={pokemonlist[i].id} 
                         height={pokemonlist[i].height} 
                         weight={pokemonlist[i].weight}
+                        energy={pokemonlist[i].energy}
                                                     />
                     );
                 }

@@ -30,6 +30,8 @@ export const requestPokemonPlayer = () => (dispatch) => {
 
         Promise.all(pokeURLsPlayer.map(url => fetch(url)))
         .then(resp=> Promise.all ( resp.map(r => r.json()) ))
+        .then(r => {let result = r.map(v => ({...v, energy: 100}))
+        return result})
         .then(data => dispatch({ type: REQUEST_PLAYER_POKE_SUCCESS, payload: data}))
         .catch(error => dispatch({ type: REQUEST_PLAYER_POKE_FAILED, payload: error }))
 
@@ -46,11 +48,14 @@ export const requestPokemonEnemy = () => (dispatch) => {
 
         Promise.all(pokeURLsPlayer.map(url => fetch(url)))
         .then(resp=> Promise.all ( resp.map(r => r.json()) ))
+        .then(r => {let result = r.map(v => ({...v, energy: 100}))
+        return result})
         .then(data => dispatch({ type: REQUEST_ENEMY_POKE_SUCCESS, payload: data}))
         .catch(error => dispatch({ type: REQUEST_ENEMY_POKE_FAILED, payload: error }))
 
     }, 3000)
 }
+ 
 
 export const currentScore = () => ({
         type: SCORE_ZERO,
@@ -86,14 +91,20 @@ export const startGame = () => ({
     }
 })
 
-export const roundWin = () => ({
-    type: TURN_DATA_WIN,
-    payload: {
-        screen: 'game',
-        mainprompt: 'You Won! Pick a Pokémon to steal',
-        turn: 'cansteal'
+export const roundWin = (array) => (dispatch) => {
+
+    const reducePower = (arrayPoke) => {
+        for (let i = 0; i < arrayPoke.length; i++){
+            let newEnergy = arrayPoke[i].energy - 5;
+            arrayPoke[i].energy = newEnergy;
+        }
+        return arrayPoke;
     }
-})
+    const lessPowerTeam = reducePower(array);
+
+    dispatch({ type: REQUEST_ENEMY_POKE_SUCCESS, payload: lessPowerTeam})
+    dispatch({type: TURN_DATA_WIN, payload: {screen: 'game', mainprompt: 'You Won! Pick a Pokémon to steal', turn: 'cansteal'}})
+}
 
 export const pokeStolen = () => ({
     type: TURN_DATA_STEAL,

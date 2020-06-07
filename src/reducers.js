@@ -32,11 +32,11 @@ export const requestPokemonPlayer = (state=initialStatePlayerPokemon, action={})
 
         case REQUEST_PLAYER_POKE_SUCCESS:
             return Object.assign({}, state, {}, {pokemonlistPlayer: action.payload, isPending: false, totalPlayerPower: getPower(action.payload)})
-        
+
         case REQUEST_PLAYER_POKE_FAILED:
             return Object.assign({}, state, {}, {error: action.payload, isPending: false})
         
-            case POKE_STEAL:
+        case POKE_STEAL:
             return Object.assign({}, state, {}, {pokemonlistPlayer: action.payload, isPending: false, totalPlayerPower: getPower(action.payload)})
 
         default:
@@ -57,7 +57,7 @@ export const requestPokemonEnemy = (state=initialStateEnemyPokemon, action={}) =
             return Object.assign({}, state, {}, {isPending: true})
 
         case REQUEST_ENEMY_POKE_SUCCESS:
-            return Object.assign({}, state, {}, {pokemonlistEnemy: action.payload, isPending: false, totalEnemyPower: getPower(action.payload)})
+            return Object.assign({}, state, {}, {pokemonlistEnemy: action.payload, isPending: false,  totalEnemyPower: getPower(action.payload)})
         
         case REQUEST_ENEMY_POKE_FAILED:
             return Object.assign({}, state, {}, {error: action.payload, isPending: false})

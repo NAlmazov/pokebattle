@@ -32,10 +32,10 @@ const mapDispatchToProps = (dispatch) => {
     onWinRound: (score) => dispatch(winRound(score)),
     onStealPokemon: (arrayPlayer, changeNumPlayer, arrayEnemy, changeNumEnemy) => dispatch(stealPokemon(arrayPlayer, changeNumPlayer, arrayEnemy, changeNumEnemy)),
     onStartGame: () => dispatch(startGame()),
-    onRoundWin: () => dispatch(roundWin()),
+    onRoundWin: (array) => dispatch(roundWin(array)),
     onPokeStolen: () => dispatch(pokeStolen()),
     onRoundLoss: () => dispatch(roundLoss()),
-    onLaunchMenu: () => dispatch(launchMenu())
+    onLaunchMenu: () => dispatch(launchMenu()),
   }
 }
 
@@ -46,7 +46,6 @@ class App extends Component {
     this.props.onLaunchMenu();
     //Get Player Pokemon Team    
     this.props.onRequestPokemonPlayer();
-    
     //Get Enemy Pokemon Team
     this.props.onRequestPokemonEnemy();
     //Reset Score
@@ -78,7 +77,7 @@ class App extends Component {
     // Win Condition
     if (TotalPlayerPower >= TotalEnemyPower){
         //lets player steal a pokemon
-            this.props.onRoundWin();
+            this.props.onRoundWin(PlayerTeam);
             let pokeSteal = window.prompt(`Type Pokemon ID to steal!`);
             pokeSteal = Number(pokeSteal);
             let pokeDiscard = window.prompt(`Type Pokemon ID to discard!`);
