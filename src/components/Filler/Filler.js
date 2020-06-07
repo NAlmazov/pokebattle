@@ -21,7 +21,7 @@ const Filler = (props) => {
 
     let colorFiller = colormatch(props);
 
-    return <div className={"filler" + " " + (colorFiller)} style={{ width: `${props.percentage}%` }} ><span>{props.percentage}%</span></div>
+    return <div className={"filler" + " " + (colorFiller)} style={{ width: `${props.percentage}%` }} ><span>Energy:{props.percentage}%</span></div>
   }
 
   export default Filler;
