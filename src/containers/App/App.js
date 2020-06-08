@@ -63,7 +63,9 @@ class App extends Component {
               <h2>Red's Team</h2>
               <div className="gamerow">
                 <PokemonTeam id='Enemy' pokemonlist={EnemyTeam} status={isPendingEnemy}/>
-                <TeamStats pokemonlist={EnemyTeam}/>
+                <div className="controlbox">
+                  <TeamStats pokemonlist={EnemyTeam}/>
+                </div>
               </div>
           </div>
         </div>

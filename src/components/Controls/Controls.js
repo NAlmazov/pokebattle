@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Controls.css';
-import { requestPokemonPlayer, requestPokemonEnemy, currentScore, winRound, stealPokemon, startGame, roundWin, pokeStolen, roundLoss, launchMenu } from '../../actions'
-
+import { requestPokemonPlayer, requestPokemonEnemy, currentScore, winRound, stealPokemon, startGame, roundWin, pokeStolen, roundLoss, launchMenu, viewTeamStats, viewControlButtons } from '../../actions'
+import TeamStats from '../../components/TeamStats/TeamStats';
+import PokemonSteal from '../../components/PokemonSteal/PokemonSteal';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -17,7 +18,8 @@ const mapStateToProps = state => {
         isPendingEnemy: state.requestPokemonEnemy.isPending,
         errorPlayer: state.requestPokemonPlayer.error,
         errorEnemy: state.requestPokemonEnemy.error,
-        score: state.currentScore.score
+        score: state.currentScore.score,
+        controls: state.controlBox.controls
     }   
 }
 
@@ -33,6 +35,8 @@ const mapDispatchToProps = (dispatch) => {
     onPokeStolen: () => dispatch(pokeStolen()),
     onRoundLoss: () => dispatch(roundLoss()),
     onLaunchMenu: () => dispatch(launchMenu()),
+    onViewTeamStats: () => dispatch(viewTeamStats()),
+    onViewControlButtons: () => dispatch(viewControlButtons())
     }
 }
 
@@ -49,6 +53,14 @@ class Controls extends Component {
         this.props.onLaunchMenu();
     
       }
+
+      onTeamStatsClick = () => {
+        this.props.onViewTeamStats();
+      }
+
+      onBackClick = () => {
+        this.props.onViewControlButtons();
+      }
     
       onRefreshButtonClick = () => {
         //Refresh Player Pokemon Team  
@@ -60,52 +72,63 @@ class Controls extends Component {
       }
     
       onBattleButtonClick = () => {
-        const { PlayerTeam, EnemyTeam, score, TotalPlayerPower, TotalEnemyPower }  = this.props;
+        const { PlayerTeam, TotalPlayerPower, TotalEnemyPower }  = this.props;
     
         // Win Condition
         if (TotalPlayerPower >= TotalEnemyPower){
             //lets player steal a pokemon
                 this.props.onRoundWin(PlayerTeam);
-                let pokeSteal = window.prompt(`Type Pokemon ID to steal!`);
-                pokeSteal = Number(pokeSteal);
-                let pokeDiscard = window.prompt(`Type Pokemon ID to discard!`);
-                pokeDiscard = Number (pokeDiscard);
-               if (pokeSteal && pokeDiscard){
-                 //Steal Pokemon
-                  this.props.onStealPokemon(PlayerTeam, pokeDiscard, EnemyTeam, pokeSteal);
-                  this.props.onPokeStolen();
-               }
-           this.props.onWinRound(score+1);
         } 
         // Loss Condition
         else {
           this.props.onRequestPokemonPlayer();
           this.props.onCurrentScore();
           this.props.onRoundLoss();
+          this.props.onRequestPokemonEnemy();
         }
-        // refresh enemy team
-        this.props.onRequestPokemonEnemy();
       }
 
 
     render(){
-        const { mainprompt }  = this.props;
-
-        return(
+        const { mainprompt, controls, PlayerTeam }  = this.props;
+        if (controls === 'pokemon-steal'){
+            return(
+                <div className='controlbox'>
+                    <PokemonSteal />
+                </div>
+            ) 
+        }
+        else if(controls === 'team-stats'){
+            return(
             <div className='controlbox'>
                 <div>
                     <div className='controls'>
-                        <button  onClick={ this.onBattleButtonClick } className='pushsmall'>Battle</button>
-                        <button>Team Stats</button>
-                        <button  onClick={ this.onRefreshButtonClick } className='pushsmall'>Restart</button>
-                        <button  onClick={ this.onMainMenuButtonClick } className='pushsmall'>Exit</button>
+                        <TeamStats pokemonlist={PlayerTeam} />
                     </div>
-                    <div className='prompt-text'>
-                        <h2>{mainprompt}</h2>
+                    <div className='controls'>
+                        <button  onClick={ this.onBattleButtonClick } >Battle</button>
+                        <button onClick={ this.onBackClick } >Back</button>
                     </div>
                 </div>
             </div>
-        );
+            )
+        } else {
+            return(
+                <div className='controlbox'>
+                    <div>
+                        <div className='controls'>
+                            <button  onClick={ this.onBattleButtonClick } >Battle</button>
+                            <button onClick = {this.onTeamStatsClick } >Team Stats</button>
+                            <button  onClick={ this.onRefreshButtonClick } >Restart</button>
+                            <button  onClick={ this.onMainMenuButtonClick } >Exit</button>
+                        </div>
+                        <div className='prompt-text'>
+                            <h2>{mainprompt}</h2>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     }
 } 
   

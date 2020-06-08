@@ -12,7 +12,11 @@ import {
     TURN_DATA_GAMESTART,
     TURN_DATA_WIN,
     TURN_DATA_STEAL,
-    TURN_DATA_LOSS
+    TURN_DATA_LOSS,
+    VIEW_TEAM_STATS,
+    VIEW_CONTROLS_MAIN,
+    POKE_STEAL_STEAL_POKE,
+    POKE_STEAL_DISCARD_POKE
 
 } from './constants'
 
@@ -62,10 +66,9 @@ export const currentScore = () => ({
         payload: 0
 })
 
-export const winRound = score => ({
-    type: WIN_ROUND,
-    score
-})
+export const winRound = score => (dispatch) => {
+   dispatch({ type: WIN_ROUND, payload:{controls: 'control-buttons'},score });
+}
 
 export const stealPokemon = (arrayPlayer, changeNumPlayer, arrayEnemy, changeNumEnemy) => ({
         type: POKE_STEAL,
@@ -87,7 +90,8 @@ export const startGame = () => ({
     payload: {
         screen: 'game',
         mainprompt: 'Click Battle To Fight!',
-        turn: 'battleready'
+        turn: 'battleready',
+        controls: 'control-buttons'
     }
 })
 
@@ -102,8 +106,8 @@ export const roundWin = (array) => (dispatch) => {
     }
     const lessPowerTeam = reducePower(array);
 
-    dispatch({ type: REQUEST_ENEMY_POKE_SUCCESS, payload: lessPowerTeam})
-    dispatch({type: TURN_DATA_WIN, payload: {screen: 'game', mainprompt: 'You Won! Pick a Pokémon to steal', turn: 'cansteal'}})
+    dispatch({ type: REQUEST_PLAYER_POKE_SUCCESS, payload: lessPowerTeam})
+    dispatch({type: TURN_DATA_WIN, payload: {screen: 'game', mainprompt: 'You Won! Pick a Pokémon to steal', turn: 'cansteal', controls: 'pokemon-steal'}})
 }
 
 export const pokeStolen = () => ({
@@ -111,18 +115,47 @@ export const pokeStolen = () => ({
     payload: {
         screen: 'game',
         mainprompt: 'Nice Pokemon! Use it in Battle!',
-        turn: 'battleready'
+        turn: 'battleready',
+        controls: 'control-buttons'
     }
 })
 
 export const roundLoss = () => ({
     type: TURN_DATA_LOSS,
     payload: {
-        screen: 'game',
+        screen: 'loss-screen',
         mainprompt: 'You Lost. Click Battle for Revenge!',
-        turn: 'battleready'
+        turn: 'battleready',
+        controls: 'control-buttons'
     }
 })
 
+export const viewTeamStats = () => ({
+    type: VIEW_TEAM_STATS,
+    payload: {
+        controls: 'team-stats'
+    }
+})
+
+export const viewControlButtons = () => ({
+    type: VIEW_CONTROLS_MAIN,
+    payload: {
+        controls: 'control-buttons'
+    }
+})
+
+export const discardPokemonById = (value) => ({
+    type: POKE_STEAL_DISCARD_POKE,
+    payload: {
+        pokeId: value
+    }
+})
+
+export const stealPokemonById = (value) => ({
+    type: POKE_STEAL_STEAL_POKE,
+    payload: {
+        pokeId: value
+    }
+})
 
 

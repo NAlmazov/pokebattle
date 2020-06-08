@@ -16,6 +16,8 @@ export const WIN_ROUND = 'WIN_ROUND';
 
 //Poke Steal
 export const POKE_STEAL = 'POKE_STEAL';
+export const POKE_STEAL_DISCARD_POKE = 'POKE_STEAL_DISCARD_POKE';
+export const POKE_STEAL_STEAL_POKE = 'POKE_STEAL_STEAL_POKE'
 
 //Turn
 export const TURN_DATA_MAINMENU = 'TURN_DATA_MAINMENU';
@@ -23,3 +25,7 @@ export const TURN_DATA_GAMESTART = 'TURN_DATA_GAMESTART';
 export const TURN_DATA_WIN = 'TURN_DATA_WIN';
 export const TURN_DATA_STEAL = 'TURN_DATA_STEAL';
 export const TURN_DATA_LOSS = 'TURN_DATA_LOSS';
+
+//Controls for the control box
+export const VIEW_TEAM_STATS = 'VIEW_TEAM_STATS';
+export const VIEW_CONTROLS_MAIN = 'VIEW_CONTROLS_MAIN';

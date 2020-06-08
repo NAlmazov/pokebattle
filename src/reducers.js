@@ -12,7 +12,11 @@ import {
     TURN_DATA_GAMESTART,
     TURN_DATA_WIN,
     TURN_DATA_STEAL,
-    TURN_DATA_LOSS
+    TURN_DATA_LOSS,
+    VIEW_TEAM_STATS,
+    VIEW_CONTROLS_MAIN,
+    POKE_STEAL_STEAL_POKE,
+    POKE_STEAL_DISCARD_POKE
 
 } from './constants'
 
@@ -85,7 +89,7 @@ export const currentScore = (state=initialStateScore, action={}) => {
 const initialStateTurn = {
     turn: 'gamestart',
     screen: 'mainmenu',
-    mainprompt: ''
+    mainprompt: '',
 }
 
 export const currentTurn = (state=initialStateTurn, action={}) => {
@@ -100,6 +104,58 @@ export const currentTurn = (state=initialStateTurn, action={}) => {
             return Object.assign({}, state, {}, {turn: action.payload.turn, screen: action.payload.screen, mainprompt: action.payload.mainprompt})
         case TURN_DATA_LOSS:
             return Object.assign({}, state, {}, {turn: action.payload.turn, screen: action.payload.screen, mainprompt: action.payload.mainprompt})   
+        default:
+            return state;
+    }
+}
+
+
+const initialStateControlBox = {
+    controls: 'control-buttons'
+}
+
+export const controlBox = (state=initialStateControlBox, action={}) => {
+    switch(action.type){
+        case VIEW_TEAM_STATS:
+            return Object.assign({}, state, {}, {controls: action.payload.controls})
+        case VIEW_CONTROLS_MAIN:
+            return Object.assign({}, state, {}, {controls: action.payload.controls})
+        case TURN_DATA_GAMESTART:
+            return Object.assign({}, state, {}, {controls: action.payload.controls})
+        case TURN_DATA_WIN:
+            return Object.assign({}, state, {}, {controls: action.payload.controls})
+        case WIN_ROUND:
+            return Object.assign({}, state, {}, {controls: action.payload.controls})
+        case TURN_DATA_STEAL:
+            return Object.assign({}, state, {}, {controls: action.payload.controls})
+        case TURN_DATA_LOSS:
+            return Object.assign({}, state, {}, {controls: action.payload.controls})          
+        default:
+            return state;
+    }
+}
+
+const initialStatePokeDiscard = {
+    pokeId: ''
+}
+
+export const pokeDiscard = (state=initialStatePokeDiscard, action={}) => {
+    switch(action.type){
+        case POKE_STEAL_DISCARD_POKE:
+            return Object.assign({}, state, {}, {pokeId: action.payload.pokeId})
+        default:
+            return state;
+    }
+}
+
+const initialStatePokeSteal = {
+    pokeId: ''
+}
+
+export const pokeSteal = (state=initialStatePokeSteal, action={}) => {
+    switch(action.type){
+        case POKE_STEAL_STEAL_POKE:
+            return Object.assign({}, state, {}, {pokeId: action.payload.pokeId})
         default:
             return state;
     }

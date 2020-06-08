@@ -15,7 +15,7 @@
 .controls{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     height: 20vh;
 }
@@ -23,11 +23,10 @@
 .prompt-text{
     border: solid black 1px;
     background-color: lightgray;
-    color: black;
+    color: #ca3b4c;
     height: 10vh;
     width: 25vw;
 }
-  
 
 button{
     cursor:pointer;

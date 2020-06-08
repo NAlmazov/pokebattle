@@ -5,7 +5,7 @@ export const getStat = (stat, array) => {
             let statArray = array[i].stats;
             statArray.forEach((statfield, i) => {
                 if (statArray[i].stat.name === stat) {
-                    statistic = statistic + (statArray[i].base_stat * pokeEnergy);
+                    statistic = Math.round(statistic + (statArray[i].base_stat * pokeEnergy));
                 }
             }
             )
