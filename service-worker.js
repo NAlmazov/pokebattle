@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/pokebattle/precache-manifest.a982b368b18b475f662a852c88636bb3.js"
+  "/pokebattle/precache-manifest.56b408adc1bce6fe8f61657e14deb776.js"
 );
 
 self.addEventListener('message', (event) => {
