@@ -6,6 +6,7 @@ import PokemonTeam from '../../components/PokemonTeam/PokemonTeam';
 import TeamStats from '../../components/TeamStats/TeamStats';
 import Controls from '../../components/Controls/Controls';
 import StartMenu from '../../components/StartMenu/StartMenu';
+import Instructions from '../../components/Instructions/Instructions';
 
 const mapStateToProps = state => {
   return{
@@ -47,29 +48,33 @@ class App extends Component {
 
       if (screen === 'mainmenu') {
         return <StartMenu />
-      } else{
-        return(
-          <div className="App">
-          <header className="App-header">
-              <h1>Pokébattle v1.0</h1>
-              <h2 className='push score'>Current Score: {score}</h2>
-          </header>
-          <div className="game">
-              <h2>Your Team</h2>
-              <div className="gamerow">
-                <PokemonTeam id='Player' pokemonlist={PlayerTeam} status={isPendingPlayer} />
-                <Controls pokemonlist={PlayerTeam} mainprompt={mainprompt} />
-              </div>
-              <h2>Red's Team</h2>
-              <div className="gamerow">
-                <PokemonTeam id='Enemy' pokemonlist={EnemyTeam} status={isPendingEnemy}/>
-                <div className="controlbox">
-                  <TeamStats pokemonlist={EnemyTeam}/>
+      } else {
+        if (screen === 'instructions') {
+          return <Instructions />
+        } else {
+          return(
+            <div className="App">
+            <header className="App-header">
+                <h1>Pokébattle v1.0</h1>
+                <h2 className='push score'>Current Score: {score}</h2>
+            </header>
+            <div className="game">
+                <h2>Your Team</h2>
+                <div className="gamerow">
+                  <PokemonTeam id='Player' pokemonlist={PlayerTeam} status={isPendingPlayer} />
+                  <Controls pokemonlist={PlayerTeam} mainprompt={mainprompt} />
                 </div>
-              </div>
+                <h2>Red's Team</h2>
+                <div className="gamerow">
+                  <PokemonTeam id='Enemy' pokemonlist={EnemyTeam} status={isPendingEnemy}/>
+                  <div className="controlbox">
+                    <TeamStats pokemonlist={EnemyTeam}/>
+                  </div>
+                </div>
+            </div>
           </div>
-        </div>
-          );
+            );
+          }
         }
       }  
   }

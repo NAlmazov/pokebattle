@@ -31,11 +31,11 @@ class PokePickList extends Component {
         return(
             <div>
                 <div>
-                    <h3>Pick Pokémon to Steal</h3>
-                    <select onChange={this.onDiscardPlayer}>
-                        <option>Select one Pokémon</option>
+                    <h3>Discard a Pokémon</h3>
+                    <select onChange={this.onStealEnemy}>
+                    <option>Select one Pokémon</option>
                         {
-                            this.props.pokemonlistEnemy.map(function (pokemon, i) {
+                            this.props.pokemonlistPlayer.map(function (pokemon, i) {
                                 return <option
                                     key={pokemon.id}
                                     value={pokemon.id}>
@@ -46,11 +46,11 @@ class PokePickList extends Component {
                     </select>
                 </div>
                 <div>
-                <h3>Discard a Pokémon</h3>
-                    <select onChange={this.onStealEnemy}>
-                    <option>Select one Pokémon</option>
+                    <h3>Pick Pokémon to Steal</h3>
+                    <select onChange={this.onDiscardPlayer}>
+                        <option>Select one Pokémon</option>
                         {
-                            this.props.pokemonlistPlayer.map(function (pokemon, i) {
+                            this.props.pokemonlistEnemy.map(function (pokemon, i) {
                                 return <option
                                     key={pokemon.id}
                                     value={pokemon.id}>

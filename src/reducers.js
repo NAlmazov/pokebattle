@@ -16,7 +16,8 @@ import {
     VIEW_TEAM_STATS,
     VIEW_CONTROLS_MAIN,
     POKE_STEAL_STEAL_POKE,
-    POKE_STEAL_DISCARD_POKE
+    POKE_STEAL_DISCARD_POKE,
+    SEE_INSTRUCTIONS
 
 } from './constants'
 
@@ -103,7 +104,9 @@ export const currentTurn = (state=initialStateTurn, action={}) => {
         case TURN_DATA_STEAL:
             return Object.assign({}, state, {}, {turn: action.payload.turn, screen: action.payload.screen, mainprompt: action.payload.mainprompt})
         case TURN_DATA_LOSS:
-            return Object.assign({}, state, {}, {turn: action.payload.turn, screen: action.payload.screen, mainprompt: action.payload.mainprompt})   
+            return Object.assign({}, state, {}, {turn: action.payload.turn, screen: action.payload.screen, mainprompt: action.payload.mainprompt})
+        case SEE_INSTRUCTIONS:
+            return Object.assign({}, state, {}, {screen: action.payload.screen})   
         default:
             return state;
     }

@@ -16,7 +16,8 @@ import {
     VIEW_TEAM_STATS,
     VIEW_CONTROLS_MAIN,
     POKE_STEAL_STEAL_POKE,
-    POKE_STEAL_DISCARD_POKE
+    POKE_STEAL_DISCARD_POKE,
+    SEE_INSTRUCTIONS
 
 } from './constants'
 
@@ -93,6 +94,14 @@ export const startGame = () => ({
         turn: 'battleready',
         controls: 'control-buttons'
     }
+})
+
+export const seeIntructions = () => ({
+    type: SEE_INSTRUCTIONS,
+    payload: {
+        screen: 'instructions'
+    }
+
 })
 
 export const roundWin = (array) => (dispatch) => {

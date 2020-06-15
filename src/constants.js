@@ -11,6 +11,9 @@ export const REQUEST_ENEMY_POKE_FAILED = 'REQUEST_ENEMY_POKE_FAILED';
 //Get Initial Score
 export const SCORE_ZERO = 'SCORE_ZERO';
 
+//Go To Instructions
+ export const SEE_INSTRUCTIONS = 'SEE_INSTRUCTIONS'; 
+
 //Round Win
 export const WIN_ROUND = 'WIN_ROUND';
 

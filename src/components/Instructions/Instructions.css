@@ -1,0 +1,22 @@
+.pushLeft {
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.menuButton {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: auto;
+}
+
+.menuButton:hover {
+    color: #ca3b4c;
+    background-color: #3B4CCA;
+}
+
+.rules{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem;
+}
